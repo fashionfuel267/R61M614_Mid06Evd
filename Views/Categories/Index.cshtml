@@ -1,0 +1,44 @@
+﻿@model IEnumerable<R61M614_Mid06Evd.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+@Html.ActionLink("Add", "Create", "Categories")
+<h2>Category List</h2>
+@if (ViewBag.err != null)
+{
+    @ViewBag.err
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Image</td>
+            <td>Date</td>
+            <td>Status</td>
+            <td>...</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    @if (item.Picture != null)
+                    {
+                        <img src="@Url.Content(@item.Picture)" alt="@item.Name" class="img-fluid" />
+                    }
+                </td>
+                <td>@item.EntryDate</td>
+                <td>
+                    @Html.Raw(item.IsContinued.Value ? "Available" : "Not Available")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Categories", new { item.Id }, null)|
+                    @Html.ActionLink("Delete", "Delete", "Categories", new { item.Id }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

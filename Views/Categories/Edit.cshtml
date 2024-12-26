@@ -1,0 +1,60 @@
+﻿@model R61M614_Mid06Evd.Models.Category
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Category </h2>
+@using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Name</label>
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Picture)
+        @Html.EditorFor(m => m.Name)
+    </div>
+    <div>
+        <label>Picture</label>
+        <div id="entryimg">
+            <input type="file" name="picture" id="picture" />
+        </div>
+        <div id="changediv">
+            @if(Model.Picture!=null)
+                {
+                    <img src="@Url.Content(Model.Picture)" />
+                }
+            <input type="button" value="Change" id="btnchange" />
+        </div>
+
+    </div>
+    <div>
+        <label>Date</label>
+        
+        @Html.EditorFor(m => m.EntryDate, "{0:MM-dd-yy}", new { type = "date", @class = "form-control" })
+    </div>
+    <div>
+        <label>Status</label>
+        @Html.EditorFor(m => m.IsContinued)
+    </div>
+    <div>
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+
+
+}
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#entryimg").hide()
+            $("#btnchange").click(function () {
+                $("#picture").click()
+                $("#entryimg").show()
+                $("#changediv").hide()
+            })
+        })
+    </script>
+
+}
