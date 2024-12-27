@@ -1,0 +1,38 @@
+﻿@model IEnumerable<R61M614_Mid06Evd.Models.Category>
+    <table class="table table-bordered">
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        @if (item.Picture != null)
+                        {
+                            <img src="@Url.Content(item.Picture)" height="200" width="200" />
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Products", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                        <a  href="/Default/Delete/@item.Id"  class="btn btn-danger btn-sm del" data-pk="@item.Id">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <table class="table table-danger">
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                            </tr>
+                            @foreach (var p in item.Products)
+                            {
+                                <tr>
+                                    <td>@p.Name</td>
+                                    <td>
+                                        @p.Price
+                                    </td>
+                                    </tr>
+                            }
+                            </table>
+                    </td>
+                </tr>
+            }
+    </table>

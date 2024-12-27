@@ -18,7 +18,7 @@ namespace R61M614_Mid06Evd.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Products = new HashSet<Product>();
+            this.Products = new List<Product>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace R61M614_Mid06Evd.Models
         public Nullable<System.DateTime> EntryDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

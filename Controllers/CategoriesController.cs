@@ -20,7 +20,7 @@ namespace R61M614_Mid06Evd.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new Category());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
